@@ -1,6 +1,12 @@
-# todo-vue
+<div align="center">
 
-This template should help get you started developing with Vue 3 in Vite.
+# Todo Vue.js
+
+This is a simple to-do app made for learning some [Vue.js](https://vuejs.org/) basic concepts.
+
+![](./screenshot.png)
+
+</div>
 
 ## Recommended IDE Setup
 
