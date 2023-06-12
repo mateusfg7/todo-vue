@@ -6,8 +6,9 @@ defineProps<{ todo: TodoData; removeFn: (id: string) => void; toggleFn: (id: str
 
 <template>
   <div
-    class="group flex items-center justify-between gap-5 rounded-lg p-2 text-2xl"
+    class="group flex items-center justify-between gap-5 rounded-lg p-2 text-xl"
     :class="!todo.complete && 'bg-neutral-200/30'"
+    :title="todo.name"
   >
     <div class="flex w-full items-center gap-5 overflow-hidden">
       <input
@@ -18,7 +19,7 @@ defineProps<{ todo: TodoData; removeFn: (id: string) => void; toggleFn: (id: str
       />
       <span
         :class="todo.complete && 'text-neutral-500 line-through'"
-        class="overflow-hidden text-ellipsis"
+        class="overflow-hidden text-ellipsis whitespace-nowrap"
         >{{ todo.name }}</span
       >
     </div>
