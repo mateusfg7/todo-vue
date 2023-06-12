@@ -7,7 +7,7 @@ const slugger = (text: string) =>
   text.toLowerCase().trim().replace(' ', '-') + '-' + (Math.random() * 100).toFixed()
 
 const todoInput = ref('')
-const todoList = reactive({ todos: [{ name: 'task 1', id: slugger('task 1') }] })
+const todoList: { todos: { name: string; id: string }[] } = reactive({ todos: [] })
 
 function addNewTodo() {
   todoList.todos.push({ name: todoInput.value, id: slugger(todoInput.value) })
@@ -26,13 +26,14 @@ function removeTodo(todoId: string) {
         type="text"
         v-model="todoInput"
         @keypress.enter="addNewTodo"
-        class="border border-neutral-700 p-2 rounded-lg w-full"
+        placeholder="Some task"
+        class="border border-neutral-700 p-3 rounded-lg w-full focus:border-[#42b883] focus:ring-[#42b883]"
       />
       <button
         @click="addNewTodo"
-        class="border border-neutral-700 text-neutral-700 p-3 rounded-lg transition-colors hover:bg-neutral-700 hover:text-neutral-100"
+        class="border border-[#35495e] text-[#35495e] p-4 rounded-lg transition-colors hover:bg-[#35495e] hover:text-white"
       >
-        <PhPlus />
+        <PhPlus weight="bold" />
       </button>
     </div>
     <div class="space-y-1">
