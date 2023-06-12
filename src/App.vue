@@ -25,11 +25,11 @@ function removeTodo(todoId: string) {
         v-model="todoInput"
         @keypress.enter="addNewTodo"
         placeholder="Some task"
-        class="border border-neutral-700 p-3 rounded-lg w-full focus:border-[#42b883] focus:ring-[#42b883]"
+        class="w-full rounded-lg border border-neutral-700 p-3 focus:border-[#42b883] focus:ring-[#42b883]"
       />
       <button
         @click="addNewTodo"
-        class="border border-[#35495e] text-[#35495e] p-4 rounded-lg transition-colors hover:bg-[#35495e] hover:text-white"
+        class="rounded-lg border border-[#35495e] p-4 text-[#35495e] transition-colors hover:bg-[#35495e] hover:text-white"
       >
         <PhPlus weight="bold" />
       </button>
