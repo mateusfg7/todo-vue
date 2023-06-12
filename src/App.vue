@@ -58,11 +58,11 @@ onMounted(() => {
           v-model="todoInput"
           @keypress.enter="addNewTodo"
           placeholder="Some task"
-          class="w-full rounded-lg border border-neutral-700 p-3 focus:border-[#42b883] focus:ring-[#42b883]"
+          class="w-full rounded-lg border-none bg-neutral-200/30 p-3 focus:bg-neutral-200/10 focus:ring-2 focus:ring-vue-light"
         />
         <button
           @click="addNewTodo"
-          class="rounded-lg border border-[#35495e] p-4 text-[#35495e] transition-colors hover:bg-[#35495e] hover:text-white"
+          class="rounded-lg bg-vue-dark/70 p-4 text-white transition-colors hover:bg-vue-dark"
         >
           <PhPlus weight="bold" />
         </button>
@@ -72,7 +72,7 @@ onMounted(() => {
         :class="todoList.todos.length > 0 && 'bg-neutral-500/5'"
       >
         <div
-          class="h-full rounded-lg bg-[#42b883] transition-all"
+          class="h-full rounded-lg bg-vue-light transition-all"
           :style="{ width: completedPercentage + '%' }"
         />
       </div>

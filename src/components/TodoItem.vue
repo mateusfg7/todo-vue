@@ -6,15 +6,15 @@ defineProps<{ todo: TodoData; removeFn: (id: string) => void; toggleFn: (id: str
 
 <template>
   <div
-    class="group flex items-center justify-between gap-5 rounded-lg border p-2 text-2xl"
-    :class="todo.complete ? 'border-neutral-500/50' : 'border-neutral-700'"
+    class="group flex items-center justify-between gap-5 rounded-lg p-2 text-2xl"
+    :class="!todo.complete && 'bg-neutral-200/30'"
   >
     <div class="flex items-center gap-5">
       <input
         type="checkbox"
         :checked="todo.complete"
         @click="toggleFn(todo.id)"
-        class="cursor-pointer rounded border border-neutral-700 p-3 text-[#42b883] focus:outline-none focus:ring-0"
+        class="cursor-pointer rounded border border-neutral-700 bg-transparent p-3 text-vue-light focus:outline-none focus:ring-0"
       />
       <span :class="todo.complete && 'text-neutral-500 line-through'">{{ todo.name }}</span>
     </div>
