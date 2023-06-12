@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref, watch } from 'vue'
 import { PhPlus } from '@phosphor-icons/vue'
 import Todo from './components/TodoItem.vue'
 import { slugger } from './lib/slugger'
 
 const todoInput = ref('')
 const todoList: { todos: { name: string; id: string }[] } = reactive({ todos: [] })
+const reverseTodoList = computed(() => todoList.todos.slice().reverse())
 
 function addNewTodo() {
   todoList.todos.push({ name: todoInput.value, id: slugger(todoInput.value) })
@@ -15,6 +16,19 @@ function addNewTodo() {
 function removeTodo(todoId: string) {
   todoList.todos = todoList.todos.filter((todo) => todo.id !== todoId)
 }
+
+watch(todoList, () => {
+  localStorage.setItem('todos', JSON.stringify(todoList.todos))
+})
+
+onMounted(() => {
+  const savedTodoList = localStorage.getItem('todos')
+
+  if (savedTodoList) {
+    const parsedTodoList: { name: string; id: string }[] = JSON.parse(savedTodoList)
+    todoList.todos.push(...parsedTodoList)
+  }
+})
 </script>
 
 <template>
@@ -36,7 +50,7 @@ function removeTodo(todoId: string) {
     </div>
     <div class="space-y-1">
       <Todo
-        v-for="todo in todoList.todos"
+        v-for="todo in reverseTodoList"
         :key="todo.id"
         :id="todo.id"
         :name="todo.name"
