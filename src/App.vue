@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import { PhPlus } from '@phosphor-icons/vue'
-import Todo from './to-do.vue'
-
-const slugger = (text: string) =>
-  text.toLowerCase().trim().replace(' ', '-') + '-' + (Math.random() * 100).toFixed()
+import Todo from './components/TodoItem.vue'
+import { slugger } from './lib/slugger'
 
 const todoInput = ref('')
 const todoList: { todos: { name: string; id: string }[] } = reactive({ todos: [] })
