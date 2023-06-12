@@ -5,8 +5,21 @@
 This is a simple to-do app made for learning some [Vue.js](https://vuejs.org/) basic concepts.
 
 ![](./screenshot.png)
+    
+![Vue.js](https://img.shields.io/badge/Vue.js-4FC08D?&style=for-the-badge&logo=vue.js&logoColor=fff)![Tailwind CSS](https://img.shields.io/badge/Tailwindcss-06B6D4?&style=for-the-badge&logo=tailwindcss&logoColor=fff)![Typescript](https://img.shields.io/badge/Typescript-007acc?&style=for-the-badge&logo=Typescript&logoColor=fff)![ESLint](https://img.shields.io/badge/ESLint-4B32C3?&style=for-the-badge&logo=ESLint)![Prettier](https://img.shields.io/badge/Prettier-F7B93E?&style=for-the-badge&logo=Prettier&logoColor=000)
 
 </div>
+
+<br>
+<br>
+<br>
+
+
+## Features
+
+🌟 Scroll when add new to-do <br>
+🌟 Save to local storage <br>
+🌟 Vue.js color pallet <br>
 
 ## Recommended IDE Setup
 
