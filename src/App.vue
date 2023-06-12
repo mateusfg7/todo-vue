@@ -20,7 +20,11 @@ const completedPercentage = computed(() => {
 
 function addNewTodo() {
   if (todoInput.value.length > 0) {
-    todoList.todos.push({ name: todoInput.value, complete: false, id: slugger(todoInput.value) })
+    todoList.todos.push({
+      name: todoInput.value,
+      complete: false,
+      id: slugger(todoInput.value) + '_' + Date.now()
+    })
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
     todoInput.value = ''
   }
