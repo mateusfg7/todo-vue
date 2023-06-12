@@ -4,6 +4,6 @@
 
 @layer base {
   body {
-    @apply flex justify-center p-10;
+    @apply flex justify-center p-10 pb-56;
   }
 }

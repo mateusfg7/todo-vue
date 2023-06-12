@@ -8,7 +8,6 @@ const todoInput = ref('')
 const todoList: { todos: TodoData[] } = reactive({
   todos: []
 })
-const reverseTodoList = computed(() => todoList.todos.slice().reverse())
 const completedPercentage = computed(() => {
   const totalOfTodos = todoList.todos.length
 
@@ -20,8 +19,11 @@ const completedPercentage = computed(() => {
 })
 
 function addNewTodo() {
-  todoList.todos.push({ name: todoInput.value, complete: false, id: slugger(todoInput.value) })
-  todoInput.value = ''
+  if (todoInput.value.length > 0) {
+    todoList.todos.push({ name: todoInput.value, complete: false, id: slugger(todoInput.value) })
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+    todoInput.value = ''
+  }
 }
 
 function removeTodo(todoId: string) {
@@ -50,36 +52,37 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="space-y-10">
-    <div class="space-y-3">
+  <div class="space-y-5">
+    <div
+      class="fixed left-0 right-0 top-0 h-2 w-full"
+      :class="todoList.todos.length > 0 && 'bg-neutral-100'"
+    >
+      <div
+        class="h-full bg-vue-light transition-all"
+        :style="{ width: completedPercentage + '%' }"
+      />
+    </div>
+    <div class="content-container fixed bottom-20 space-y-1">
       <div class="flex items-stretch justify-between gap-3">
         <input
           type="text"
           v-model="todoInput"
           @keypress.enter="addNewTodo"
           placeholder="Some task"
-          class="w-full rounded-lg border-none bg-neutral-200/30 p-3 focus:bg-neutral-200/10 focus:ring-2 focus:ring-vue-light"
+          class="h-12 w-full rounded-lg border-none bg-neutral-200/80 p-3 text-xl backdrop-blur-[80px] focus:bg-neutral-200/10 focus:ring-2 focus:ring-vue-light"
         />
         <button
           @click="addNewTodo"
-          class="rounded-lg bg-vue-dark/70 p-4 text-white transition-colors hover:bg-vue-dark"
+          class="flex aspect-square h-12 items-center justify-center rounded-lg bg-vue-dark/70 text-xl text-white backdrop-blur-[80px] transition-colors hover:bg-vue-dark"
         >
           <PhPlus weight="bold" />
         </button>
       </div>
-      <div
-        class="h-2 w-full overflow-hidden rounded-lg"
-        :class="todoList.todos.length > 0 && 'bg-neutral-500/5'"
-      >
-        <div
-          class="h-full rounded-lg bg-vue-light transition-all"
-          :style="{ width: completedPercentage + '%' }"
-        />
-      </div>
     </div>
-    <div class="space-y-1">
+
+    <div class="content-container space-y-1">
       <Todo
-        v-for="todo in reverseTodoList"
+        v-for="todo in todoList.todos"
         :key="todo.id"
         :todo="todo"
         :remove-fn="removeTodo"
@@ -89,4 +92,8 @@ onMounted(() => {
   </div>
 </template>
 
-<style lang="postcss"></style>
+<style lang="postcss">
+.content-container {
+  @apply w-[22rem];
+}
+</style>
