@@ -19,6 +19,7 @@ This is a simple to-do app made for learning some [Vue.js](https://vuejs.org/) b
 
 🌟 Scroll when add new to-do <br>
 🌟 Save to local storage <br>
+🌟 Progress bar <br>
 🌟 Vue.js color pallet <br>
 
 ## Recommended IDE Setup
