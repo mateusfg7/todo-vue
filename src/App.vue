@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, reactive, ref, watch } from 'vue'
 import { PhPlus } from '@phosphor-icons/vue'
+import { useToast } from 'vue-toastification'
 import Todo from './components/TodoItem.vue'
 import { slugger } from './lib/slugger'
 
@@ -18,14 +19,22 @@ const completedPercentage = computed(() => {
   return (completedTodos / totalOfTodos) * 100
 })
 
+const toast = useToast()
+
 function addNewTodo() {
   // Prevent todo names less than 2 characters
-  if (todoInput.value.length < 2) return
+  if (todoInput.value.length < 2) {
+    toast.warning("The to-do name has to be more than 2 characters")
+    return
+  }
 
   // Prevent repeated todos
   const repeatedList = todoList.todos.filter(todo => slugger(todo.name) === slugger(todoInput.value))
   console.log(repeatedList)
-  if (repeatedList.length > 0) return
+  if (repeatedList.length > 0) {
+    toast.warning("There is already a to-do with that name")
+    return
+  }
 
 
   todoList.todos.push({
