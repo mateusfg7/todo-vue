@@ -92,7 +92,7 @@ onMounted(() => {
       class='content-container fixed bottom-20 space-y-1 data-[error="true"]:animate-shake'>
       <div class="flex items-stretch justify-between gap-3">
         <input type="text" v-model="todoInput" @keypress.enter="addNewTodo" placeholder="Some task"
-          class="h-12 w-full rounded-lg border-none bg-neutral-200/80 p-3 text-xl backdrop-blur-[80px] focus:bg-neutral-200/10 focus:ring-2 focus:ring-vue-light" />
+          class="h-12 w-full rounded-lg border-none bg-neutral-200/95 p-3 text-xl backdrop-blur-[80px] focus:bg-neutral-100/95 focus:ring-2 focus:ring-vue-light transition-colors" />
         <button @click="addNewTodo"
           class="flex aspect-square h-12 items-center justify-center rounded-lg bg-vue-dark/70 text-xl text-white backdrop-blur-[80px] transition-colors hover:bg-vue-dark">
           <PhPlus weight="bold" />
