@@ -57,41 +57,25 @@ onMounted(() => {
 
 <template>
   <div class="space-y-5">
-    <div
-      class="fixed left-0 right-0 top-0 h-2 w-full"
-      :class="todoList.todos.length > 0 && 'bg-neutral-100'"
-    >
-      <div
-        class="h-full bg-vue-light transition-all"
-        :style="{ width: completedPercentage + '%' }"
-      />
+    <div class="fixed left-0 right-0 top-0 h-2 w-full" :class="todoList.todos.length > 0 && 'bg-neutral-100'">
+      <div :data-percentage="completedPercentage"
+        class='h-full bg-vue-light transition-all rounded-r-full data-[percentage="100"]:rounded-none'
+        :style="{ width: completedPercentage + '%' }" />
     </div>
     <div class="content-container fixed bottom-20 space-y-1">
       <div class="flex items-stretch justify-between gap-3">
-        <input
-          type="text"
-          v-model="todoInput"
-          @keypress.enter="addNewTodo"
-          placeholder="Some task"
-          class="h-12 w-full rounded-lg border-none bg-neutral-200/80 p-3 text-xl backdrop-blur-[80px] focus:bg-neutral-200/10 focus:ring-2 focus:ring-vue-light"
-        />
-        <button
-          @click="addNewTodo"
-          class="flex aspect-square h-12 items-center justify-center rounded-lg bg-vue-dark/70 text-xl text-white backdrop-blur-[80px] transition-colors hover:bg-vue-dark"
-        >
+        <input type="text" v-model="todoInput" @keypress.enter="addNewTodo" placeholder="Some task"
+          class="h-12 w-full rounded-lg border-none bg-neutral-200/80 p-3 text-xl backdrop-blur-[80px] focus:bg-neutral-200/10 focus:ring-2 focus:ring-vue-light" />
+        <button @click="addNewTodo"
+          class="flex aspect-square h-12 items-center justify-center rounded-lg bg-vue-dark/70 text-xl text-white backdrop-blur-[80px] transition-colors hover:bg-vue-dark">
           <PhPlus weight="bold" />
         </button>
       </div>
     </div>
 
     <div class="content-container space-y-1">
-      <Todo
-        v-for="todo in todoList.todos"
-        :key="todo.id"
-        :todo="todo"
-        :remove-fn="removeTodo"
-        :toggle-fn="toggleTodoCheck"
-      />
+      <Todo v-for="todo in todoList.todos" :key="todo.id" :todo="todo" :remove-fn="removeTodo"
+        :toggle-fn="toggleTodoCheck" />
     </div>
   </div>
 </template>
@@ -101,3 +85,5 @@ onMounted(() => {
   @apply w-[22rem];
 }
 </style>
+
+ 
