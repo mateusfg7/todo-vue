@@ -19,15 +19,23 @@ const completedPercentage = computed(() => {
 })
 
 function addNewTodo() {
-  if (todoInput.value.length > 0) {
-    todoList.todos.push({
-      name: todoInput.value,
-      complete: false,
-      id: slugger(todoInput.value) + '_' + Date.now()
-    })
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
-    todoInput.value = ''
-  }
+  // Prevent todo names less than 2 characters
+  if (todoInput.value.length < 2) return
+
+  // Prevent repeated todos
+  const repeatedList = todoList.todos.filter(todo => slugger(todo.name) === slugger(todoInput.value))
+  console.log(repeatedList)
+  if (repeatedList.length > 0) return
+
+
+  todoList.todos.push({
+    name: todoInput.value,
+    complete: false,
+    id: slugger(todoInput.value) + '_' + Date.now()
+  })
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+  todoInput.value = ''
+
 }
 
 function removeTodo(todoId: string) {
