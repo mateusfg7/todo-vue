@@ -5,7 +5,9 @@ import { useToast } from 'vue-toastification'
 import Todo from './components/TodoItem.vue'
 import { slugger } from './lib/slugger'
 
+const error = ref(false)
 const todoInput = ref('')
+const todoInputComponent = ref<HTMLDivElement>()
 const todoList: { todos: TodoData[] } = reactive({
   todos: []
 })
@@ -24,14 +26,15 @@ const toast = useToast()
 function addNewTodo() {
   // Prevent todo names less than 2 characters
   if (todoInput.value.length < 2) {
+    error.value = true
     toast.warning("The to-do name has to be more than 2 characters")
     return
   }
 
   // Prevent repeated todos
   const repeatedList = todoList.todos.filter(todo => slugger(todo.name) === slugger(todoInput.value))
-  console.log(repeatedList)
   if (repeatedList.length > 0) {
+    error.value = true
     toast.warning("There is already a to-do with that name")
     return
   }
@@ -69,6 +72,12 @@ onMounted(() => {
     const parsedTodoList: TodoData[] = JSON.parse(savedTodoList)
     todoList.todos.push(...parsedTodoList)
   }
+
+  todoInputComponent?.value?.addEventListener("animationend", () => {
+    error.value = false
+  })
+
+
 })
 </script>
 
@@ -79,7 +88,8 @@ onMounted(() => {
         class='h-full bg-vue-light transition-all rounded-r-full data-[percentage="100"]:rounded-none'
         :style="{ width: completedPercentage + '%' }" />
     </div>
-    <div class="content-container fixed bottom-20 space-y-1">
+    <div :data-error="error" ref="todoInputComponent"
+      class='content-container fixed bottom-20 space-y-1 data-[error="true"]:animate-shake'>
       <div class="flex items-stretch justify-between gap-3">
         <input type="text" v-model="todoInput" @keypress.enter="addNewTodo" placeholder="Some task"
           class="h-12 w-full rounded-lg border-none bg-neutral-200/80 p-3 text-xl backdrop-blur-[80px] focus:bg-neutral-200/10 focus:ring-2 focus:ring-vue-light" />
