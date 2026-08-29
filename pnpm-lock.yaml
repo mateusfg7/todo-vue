@@ -38,8 +38,8 @@ devDependencies:
     specifier: ^12.0.0
     version: 12.0.0(eslint-plugin-vue@9.11.0)(eslint@8.57.1)(typescript@5.2.2)
   '@vue/tsconfig':
-    specifier: ^0.5.0
-    version: 0.5.0
+    specifier: ^0.8.0
+    version: 0.8.1(typescript@5.2.2)(vue@3.3.2)
   autoprefixer:
     specifier: ^10.4.14
     version: 10.4.14(postcss@8.5.6)
@@ -830,8 +830,19 @@ packages:
     resolution: {integrity: sha512-7OjdcV8vQ74eiz1TZLzZP4JwqM5fA94K6yntPS5Z25r9HDuGNzaGdgvwKYq6S+MxwF0TFRwe50fIR/MYnakdkQ==}
     dev: true
 
-  /@vue/tsconfig@0.5.0:
-    resolution: {integrity: sha512-vRNRhhZfoJganWuqWuePo7ol2MaG9XkQD3jVJy2WuZOWWa5LAjJqnBSBsTGKvCrcrVMe5nPM9Intp7o3ekRjUw==}
+  /@vue/tsconfig@0.8.1(typescript@5.2.2)(vue@3.3.2):
+    resolution: {integrity: sha512-aK7feIWPXFSUhsCP9PFqPyFOcz4ENkb8hZ2pneL6m2UjCkccvaOhC/5KCKluuBufvp2KzkbdA2W2pk20vLzu3g==}
+    peerDependencies:
+      typescript: 5.x
+      vue: ^3.4.0
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+      vue:
+        optional: true
+    dependencies:
+      typescript: 5.2.2
+      vue: 3.3.2
     dev: true
 
   /acorn-jsx@5.3.2(acorn@8.15.0):
